@@ -1,10 +1,10 @@
 pub mod video;
-mod author;
-mod footer;
-mod image;
-mod thumbnail;
-mod provider;
-mod field;
+pub mod author;
+pub mod footer;
+pub mod image;
+pub mod thumbnail;
+pub mod provider;
+pub mod field;
 
 use std::time::SystemTime;
 use iso8061_timestamp::Timestamp;
