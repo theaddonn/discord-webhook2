@@ -4,4 +4,10 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-reqwest = "0.12"
+reqwest = { version = "0.12", features = ["json"] }
+thiserror = "1.0"
+url = "2.5"
+serde_json = "1"
+tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros"] }
+serde = { version = "1", features = ["derive"] }
+iso8061-timestamp = "0.1"
