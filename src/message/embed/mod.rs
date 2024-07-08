@@ -6,7 +6,6 @@ pub mod thumbnail;
 pub mod provider;
 pub mod field;
 
-use std::time::SystemTime;
 use iso8061_timestamp::Timestamp;
 use serde::Serialize;
 use crate::embed::author::EmbedAuthor;
@@ -31,4 +30,38 @@ pub struct Embed {
     pub provider: Option<EmbedProvider>,
     pub author: Option<EmbedAuthor>,
     pub fields: Option<Vec<EmbedField>>
+}
+
+impl Embed {
+    pub fn new() -> Self {
+        Self {
+            title: None,
+            description: None,
+            url: None,
+            timestamp: None,
+            color: None,
+            footer: None,
+            image: None,
+            thumbnail: None,
+            video: None,
+            provider: None,
+            author: None,
+            fields: None,
+        }
+    }
+
+    pub fn title(mut self, title: impl Into<String>) -> Self {
+        self.title = Some(title.into());
+        self
+    }
+
+    pub fn description(mut self, description: impl Into<String>) -> Self {
+        self.description = Some(description.into());
+        self
+    }
+
+    pub fn url(mut self, url: impl Into<String>) -> Self {
+        self.url = Some(url.into());
+        self
+    }
 }
