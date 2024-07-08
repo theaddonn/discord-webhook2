@@ -1,6 +1,6 @@
 use serde::{Serialize, Serializer};
 
-struct MessageFlags {
+pub struct MessageFlags {
     /// This message has been published to subscribed channels (via Channel Following)
     crossposted: bool,
     /// This message originated from a message in another channel (via Channel Following)
