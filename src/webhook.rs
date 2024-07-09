@@ -1,5 +1,8 @@
-use reqwest::{Client, Error, Method, Request, RequestBuilder, Response, Url};
+use reqwest::{Client, Url};
+
+use crate::DiscordWebhookError::{FormatError, ReqwestError};
 use crate::error::DiscordWebhookError;
+use crate::id::MessageID;
 use crate::message::Message;
 
 pub struct DiscordWebhook {
@@ -25,12 +28,23 @@ impl DiscordWebhook {
         }
     }
 
-    pub async fn send(&self, message: &Message) {
-        let response = self.client
-            .post(self.url.clone())
+    pub async fn send(&self, message: &Message) -> Result<MessageID, DiscordWebhookError> {
+        let send_result = self.client
+            .post(self.url.join("?wait=true").unwrap().clone())
             .json(message)
             .send().await;
 
-        println!("RESPONSE: {response:#?}");
+        let response = send_result.map_err(|e| ReqwestError(e) )?;
+
+        if response.status().is_success() {
+            let posted_message: Message = response.json::<Message>().await.map_err(|e| ReqwestError(e) )?;
+
+            match posted_message.id {
+                None => { return Err(FormatError(String::from("Missing field `id` in response"))) }
+                Some(v) => { return Ok(v) }
+            }
+        } else {
+            return Err(FormatError(response.text().await.unwrap().to_string()))
+        };
     }
 }
