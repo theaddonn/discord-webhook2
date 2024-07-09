@@ -1,15 +1,18 @@
-use serde::{Serialize, Serializer};
+use serde::{Deserialize, Serialize, Serializer};
 use serde::ser::SerializeStruct;
 use crate::embed::Embed;
 use crate::flags::MessageFlags;
+use crate::message::id::MessageID;
 
 pub mod content;
 pub mod poll;
 pub mod embed;
 pub mod flags;
+pub mod id;
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub struct Message {
+    pub id: Option<MessageID>,
     /// The message contents (up to 2000 characters)
     pub content: Option<String>,
     /// Override the default username of the webhook
@@ -33,6 +36,7 @@ impl Message {
     where
         Func: Fn(Message) -> Message {
         function(Self {
+            id: None,
             content: None,
             username: None,
             avatar_url: None,
