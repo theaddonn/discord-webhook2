@@ -1,3 +1,1 @@
-pub struct Poll {
-
-}
+pub struct Poll {}

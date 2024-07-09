@@ -1,7 +1,6 @@
+use reqwest::Error as ReqwestError;
 use thiserror::Error;
 use url::ParseError;
-use reqwest::Error as ReqwestError;
-use serde_json::Error as JsonError;
 
 #[derive(Error, Debug)]
 pub enum DiscordWebhookError {

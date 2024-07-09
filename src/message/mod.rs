@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize, Serializer};
 use serde::ser::SerializeStruct;
+
 use crate::embed::Embed;
 use crate::flags::MessageFlags;
 use crate::message::id::MessageID;
@@ -34,7 +35,8 @@ pub struct Message {
 impl Message {
     pub fn new<Func>(function: Func) -> Self
     where
-        Func: Fn(Message) -> Message {
+        Func: Fn(Message) -> Message,
+    {
         function(Self {
             id: None,
             content: None,
@@ -68,7 +70,8 @@ impl Message {
 
     pub fn embed<Func>(mut self, function: Func) -> Self
     where
-        Func: Fn(Embed) -> Embed {
+        Func: Fn(Embed) -> Embed,
+    {
         let embed = function(Embed::new());
 
         match &mut self.embeds {

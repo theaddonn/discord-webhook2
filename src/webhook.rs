@@ -17,14 +17,14 @@ impl DiscordWebhook {
 
         Ok(Self {
             client: Client::new(),
-            url
+            url,
         })
     }
 
     pub fn from_url(url: Url) -> Self {
         Self {
             client: Client::new(),
-            url
+            url,
         }
     }
 
@@ -34,17 +34,17 @@ impl DiscordWebhook {
             .json(message)
             .send().await;
 
-        let response = send_result.map_err(|e| ReqwestError(e) )?;
+        let response = send_result.map_err(|e| ReqwestError(e))?;
 
         if response.status().is_success() {
-            let posted_message: Message = response.json::<Message>().await.map_err(|e| ReqwestError(e) )?;
+            let posted_message: Message = response.json::<Message>().await.map_err(|e| ReqwestError(e))?;
 
             match posted_message.id {
                 None => { return Err(FormatError(String::from("Missing field `id` in response"))) }
                 Some(v) => { return Ok(v) }
             }
         } else {
-            return Err(FormatError(response.text().await.unwrap().to_string()))
+            return Err(FormatError(response.text().await.unwrap().to_string()));
         };
     }
 }

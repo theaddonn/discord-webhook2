@@ -1,13 +1,6 @@
-pub mod video;
-pub mod author;
-pub mod footer;
-pub mod image;
-pub mod thumbnail;
-pub mod provider;
-pub mod field;
-
 use iso8061_timestamp::Timestamp;
 use serde::{Deserialize, Serialize};
+
 use crate::embed::author::EmbedAuthor;
 use crate::embed::field::EmbedField;
 use crate::embed::footer::EmbedFooter;
@@ -15,6 +8,14 @@ use crate::embed::image::EmbedImage;
 use crate::embed::provider::EmbedProvider;
 use crate::embed::thumbnail::EmbedThumbnail;
 use crate::embed::video::EmbedVideo;
+
+pub mod video;
+pub mod author;
+pub mod footer;
+pub mod image;
+pub mod thumbnail;
+pub mod provider;
+pub mod field;
 
 #[derive(Serialize, Deserialize)]
 pub struct Embed {
@@ -29,7 +30,7 @@ pub struct Embed {
     pub video: Option<EmbedVideo>,
     pub provider: Option<EmbedProvider>,
     pub author: Option<EmbedAuthor>,
-    pub fields: Option<Vec<EmbedField>>
+    pub fields: Option<Vec<EmbedField>>,
 }
 
 impl Embed {
