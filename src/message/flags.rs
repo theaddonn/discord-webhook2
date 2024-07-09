@@ -1,4 +1,4 @@
-use serde::{Serialize, Serializer};
+use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
 pub struct MessageFlags {
     /// This message has been published to subscribed channels (via Channel Following)
@@ -47,3 +47,36 @@ impl Serialize for MessageFlags {
         serializer.serialize_u16(bitfield)
     }
 }
+
+macro_rules! bit_field {
+    ($v:expr, $bit:expr) => {
+        ($v >> $bit) & 1 != 0
+    };
+}
+
+impl<'de> Deserialize<'de> for MessageFlags {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        match u16::deserialize(deserializer) {
+            Ok(v) => {
+                Ok(Self {
+                    crossposted: bit_field!(v, 0),
+                    is_crosspost: bit_field!(v, 1),
+                    suppress_embeds: bit_field!(v, 2),
+                    source_message_deleted: bit_field!(v, 3),
+                    urgent: bit_field!(v, 4),
+                    has_thread: bit_field!(v, 5),
+                    ephemeral: bit_field!(v, 6),
+                    loading: bit_field!(v, 7),
+                    failed_to_mention_some_roles_in_thread: bit_field!(v, 8),
+                    suppress_notifications: bit_field!(v, 12),
+                    is_voice_message: bit_field!(v, 13),
+                })
+            }
+            Err(e) => { Err(e) }
+        }
+    }
+}
+

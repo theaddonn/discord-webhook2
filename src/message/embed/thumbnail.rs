@@ -1,6 +1,6 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub struct EmbedThumbnail {
     pub url: String,
     #[serde(rename = "proxy_url")]
