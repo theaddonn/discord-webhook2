@@ -7,7 +7,7 @@ pub mod provider;
 pub mod field;
 
 use iso8061_timestamp::Timestamp;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use crate::embed::author::EmbedAuthor;
 use crate::embed::field::EmbedField;
 use crate::embed::footer::EmbedFooter;
@@ -16,7 +16,7 @@ use crate::embed::provider::EmbedProvider;
 use crate::embed::thumbnail::EmbedThumbnail;
 use crate::embed::video::EmbedVideo;
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub struct Embed {
     pub title: Option<String>,
     pub description: Option<String>,
