@@ -6,5 +6,5 @@ async fn main() {
 
     webhook.send(&Message::new(|message| message
         .content("Hello World!")
-    )).await;
+    )).await.unwrap();
 }

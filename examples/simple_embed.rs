@@ -10,5 +10,5 @@ async fn main() {
             .description("description")
             .url("https://example.com")
         )
-    )).await;
+    )).await.unwrap();
 }
