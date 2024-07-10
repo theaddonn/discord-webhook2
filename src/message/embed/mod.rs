@@ -65,4 +65,24 @@ impl Embed {
         self.url = Some(url.into());
         self
     }
+
+    pub fn timestamp(mut self, timestamp: Timestamp) -> Self {
+        self.timestamp = Some(timestamp);
+        self
+    }
+
+    pub fn color(mut self, color: u32) -> Self {
+        self.color = Some(color);
+        self
+    }
+
+    pub fn image<Func>(mut self, function: Func) -> Self
+    where
+        Func: Fn(EmbedImage) -> EmbedImage,
+    {
+        let image = function(EmbedImage::new());
+
+        self.image = Some(image);
+        self
+    }
 }
