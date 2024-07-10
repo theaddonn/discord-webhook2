@@ -2,6 +2,13 @@
 name = "discord-webhook2"
 version = "0.1.0"
 edition = "2021"
+authors = ["Adrian8115"]
+readme = "README.md"
+description = "Discord webhook api library"
+repository = "https://github.com/Adrian8115/discord-webhook2"
+license = "GPL-3.0"
+keywords = ["discord", "discord-api", "webhook", "discord-webhook", "network"]
+categories = ["network-programming", "api-bindings"]
 
 [dependencies]
 reqwest = { version = "0.12", features = ["json", "multipart"] }
