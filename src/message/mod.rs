@@ -1,11 +1,9 @@
-use serde::{Deserialize, Serialize, Serializer};
-use serde::ser::SerializeStruct;
+use serde::{Deserialize, Serialize};
 
 use crate::embed::Embed;
 use crate::flags::MessageFlags;
 use crate::message::id::MessageID;
 
-pub mod content;
 pub mod poll;
 pub mod embed;
 pub mod flags;
