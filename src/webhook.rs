@@ -113,4 +113,16 @@ impl DiscordWebhook {
             }
         }
     }
+
+    pub async fn delete(&self, message_id: MessageID) -> Result<(), DiscordWebhookError> {
+        let url = Url::parse(&format!("{}/", self.url.as_str())).unwrap();
+
+        let send_result = self.client
+            .delete(url.join(format!("messages/{}", message_id.0).as_str()).unwrap().clone())
+            .send().await;
+
+        send_result.map_err(|e| DiscordWebhookError::ReqwestError(e))?;
+
+        Ok(())
+    }
 }
