@@ -4,7 +4,8 @@ _A simple rust library to interact with discord webhooks._
 
 Why use this one over the others?
 
-It is the only one to support:  
+It is the only one to support:
+
 - uploading files/extra data
 - handling message ids
 - editing and deleting messages

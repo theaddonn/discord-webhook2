@@ -4,10 +4,10 @@ use crate::embed::Embed;
 use crate::flags::MessageFlags;
 use crate::message::id::MessageID;
 
-pub mod poll;
 pub mod embed;
 pub mod flags;
 pub mod id;
+pub mod poll;
 
 #[derive(Serialize, Deserialize)]
 pub struct Message {
@@ -73,8 +73,8 @@ impl Message {
         let embed = function(Embed::new());
 
         match &mut self.embeds {
-            None => { self.embeds = Some(vec![embed]) }
-            Some(ref mut vec) => { vec.push(embed) }
+            None => self.embeds = Some(vec![embed]),
+            Some(ref mut vec) => vec.push(embed),
         };
         self
     }

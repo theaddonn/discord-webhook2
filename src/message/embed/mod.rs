@@ -9,13 +9,13 @@ use crate::embed::provider::EmbedProvider;
 use crate::embed::thumbnail::EmbedThumbnail;
 use crate::embed::video::EmbedVideo;
 
-pub mod video;
 pub mod author;
+pub mod field;
 pub mod footer;
 pub mod image;
-pub mod thumbnail;
 pub mod provider;
-pub mod field;
+pub mod thumbnail;
+pub mod video;
 
 #[derive(Serialize, Deserialize)]
 pub struct Embed {

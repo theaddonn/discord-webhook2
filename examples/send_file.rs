@@ -1,6 +1,6 @@
 use std::collections::BTreeMap;
+
 use discord_webhook2::{DiscordWebhook, Message};
-use discord_webhook2::embed::image::EmbedImage;
 
 #[tokio::main]
 async fn main() {
@@ -8,13 +8,18 @@ async fn main() {
 
     let mut files = BTreeMap::new();
 
-    files.insert(String::from("send_file.png"), Vec::from(include_bytes!("send_file.png")));
+    files.insert(
+        String::from("send_file.png"),
+        Vec::from(include_bytes!("send_file.png")),
+    );
 
-    webhook.send_with_files(&Message::new(|message| message
-        .embed(|embed| embed
-            .image(|image| image
-                .url("attachment://send_file.png")
-            )
+    webhook
+        .send_with_files(
+            &Message::new(|message| {
+                message.embed(|embed| embed.image(|image| image.url("attachment://send_file.png")))
+            }),
+            files,
         )
-    ), files).await.unwrap();
+        .await
+        .unwrap();
 }
