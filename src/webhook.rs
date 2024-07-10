@@ -1,5 +1,4 @@
 use std::collections::BTreeMap;
-use std::io::Read;
 
 use reqwest::multipart::{Form, Part};
 use reqwest::{Client, Url};
