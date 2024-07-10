@@ -90,8 +90,10 @@ impl DiscordWebhook {
     }
 
     pub async fn edit(&self, message_id: MessageID, message: &Message) -> Result<MessageID, DiscordWebhookError> {
+        let url = Url::parse(&format!("{}/", self.url.as_str())).unwrap();
+
         let send_result = self.client
-            .post(self.url.join(format!("messages/{}", message_id.0).as_str()).unwrap().clone())
+            .patch(url.join(format!("messages/{}?wait=true", message_id.0).as_str()).unwrap().clone())
             .json(message)
             .send().await;
 
