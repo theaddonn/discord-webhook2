@@ -10,6 +10,7 @@ async fn main() {
 
     files.insert(
         String::from("send_file.png"),
+        // Please ignore my artistic talent
         Vec::from(include_bytes!("send_file.png")),
     );
 
