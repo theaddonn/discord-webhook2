@@ -9,7 +9,7 @@ async fn main() {
     let webhook = DiscordWebhook::new(env!("DISCORD_WEBHOOK_URL")).unwrap();
 
     let message_id = webhook
-        .send(&Message::new(|message| message.content("Original text")))
+        .send(&Message::new(|message| message.content("Some text")))
         .await
         .unwrap();
 
