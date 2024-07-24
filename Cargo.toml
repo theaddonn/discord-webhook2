@@ -6,7 +6,7 @@ authors = ["Adrian8115"]
 readme = "README.md"
 description = "Discord webhook api library"
 repository = "https://github.com/Adrian8115/discord-webhook2"
-license = "GPL-3.0"
+license = "Apache-2.0"
 keywords = ["discord", "discord-api", "webhook", "discord-webhook", "network"]
 categories = ["network-programming", "api-bindings"]
 
