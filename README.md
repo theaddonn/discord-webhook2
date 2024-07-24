@@ -1,6 +1,10 @@
 # discord-webhook2
 
-_A simple rust library to interact with discord webhooks._
+[![Crates.io Version](https://img.shields.io/crates/v/discord-webhook2)](https://crates.io/crates/discord-webhook2)
+[![Crates.io Total Downloads](https://img.shields.io/crates/d/discord-webhook2)](https://crates.io/crates/discord-webhook2)
+[![Crates.io License](https://img.shields.io/crates/l/discord-webhook2)](https://github.com/Adrian8115/discord-webhook2/blob/main/LICENSE)
+
+A Rust library to interact with advanced discord webhooks.
 
 Why use this one over the others?
 
