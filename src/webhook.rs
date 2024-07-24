@@ -108,9 +108,7 @@ impl DiscordWebhook {
     }
 
     /// Returns a previously sent webhook message from the same token.
-    pub async fn get(
-        &self,
-        message_id: &MessageID) -> Result<Message, DiscordWebhookError> {
+    pub async fn get(&self, message_id: &MessageID) -> Result<Message, DiscordWebhookError> {
         let url = Url::parse(&format!("{}/", self.url.as_str())).unwrap();
 
         let send_result = self
@@ -126,12 +124,10 @@ impl DiscordWebhook {
         let response = send_result.map_err(|e| ReqwestError(e))?;
 
         match response.status().is_success() {
-            true => {
-                Ok(response
-                    .json::<Message>()
-                    .await
-                    .map_err(|e| ReqwestError(e))?)
-            }
+            true => Ok(response
+                .json::<Message>()
+                .await
+                .map_err(|e| ReqwestError(e))?),
             false => Err(DiscordWebhookError::FormatError(
                 response.text().await.unwrap().to_string(),
             )),

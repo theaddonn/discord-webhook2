@@ -8,6 +8,7 @@ While there are multiple other libraries,
 most of them are either unmaintained or lack certain features...
 
 Supports:
+
 - [X] Embeds
 - [X] Handling message ids
 - [X] Uploading files/extra data
@@ -30,7 +31,8 @@ async fn main() {
 }
 ```
 
-More examples can be found in the examples directory [discord-webhook2/examples](https://github.com/Adrian8115/discord-webhook2/tree/main/examples).
+More examples can be found in the examples
+directory [discord-webhook2/examples](https://github.com/Adrian8115/discord-webhook2/tree/main/examples).
 
 ### Contributing
 

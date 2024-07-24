@@ -15,12 +15,7 @@ async fn main() {
 
     sleep(Duration::from_secs(3)).await;
 
-    let message = webhook
-        .get(
-            &message_id
-        )
-        .await
-        .unwrap();
+    let message = webhook.get(&message_id).await.unwrap();
 
     println!("{message:#?}");
 }
