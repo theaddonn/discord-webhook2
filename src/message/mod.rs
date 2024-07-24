@@ -9,7 +9,7 @@ pub mod flags;
 pub mod id;
 pub mod poll;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Message {
     pub id: Option<MessageID>,
     /// The message contents (up to 2000 characters)

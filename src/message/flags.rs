@@ -1,5 +1,6 @@
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
+#[derive(Debug, Clone)]
 pub struct MessageFlags {
     /// This message has been published to subscribed channels (via Channel Following)
     crossposted: bool,

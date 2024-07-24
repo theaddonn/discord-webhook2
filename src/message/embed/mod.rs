@@ -17,7 +17,7 @@ pub mod provider;
 pub mod thumbnail;
 pub mod video;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Embed {
     pub title: Option<String>,
     pub description: Option<String>,
