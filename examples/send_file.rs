@@ -16,11 +16,8 @@ async fn main() {
 
     webhook
         .send_with_files(
-            &Message::new(|message| { message
-                .embed(|embed| embed
-                    .image(|image| image
-                        .url("attachment://send_file.png"))
-                )
+            &Message::new(|message| {
+                message.embed(|embed| embed.image(|image| image.url("attachment://send_file.png")))
             }),
             files,
         )

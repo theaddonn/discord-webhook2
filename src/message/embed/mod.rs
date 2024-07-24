@@ -143,8 +143,8 @@ impl Embed {
         let field = function(EmbedField::new());
 
         match self.fields {
-            None => { self.fields = Some(vec![field]) }
-            Some(ref mut v) => { v.push(field) }
+            None => self.fields = Some(vec![field]),
+            Some(ref mut v) => v.push(field),
         }
         self
     }
