@@ -17,5 +17,5 @@ async fn main() {
 
     sleep(Duration::from_secs(3)).await;
 
-    webhook.delete(message_id).await.unwrap();
+    webhook.delete(&message_id).await.unwrap();
 }

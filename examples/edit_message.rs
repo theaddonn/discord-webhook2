@@ -17,7 +17,7 @@ async fn main() {
 
     webhook
         .edit(
-            message_id,
+            &message_id,
             &Message::new(|message| message.content("Edited text")),
         )
         .await
