@@ -38,3 +38,5 @@ directory [discord-webhook2/examples](https://github.com/Adrian8115/discord-webh
 
 Contributing is always appreciated.
 Feel free to create issues or open pull requests at any time.
+
+If you like this project dont forget to leave a star on github!
