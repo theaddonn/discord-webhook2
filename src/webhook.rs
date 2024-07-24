@@ -62,7 +62,7 @@ impl DiscordWebhook {
         }
     }
 
-    /// Send the given Message object. Returns the ID of the send message as a result
+    /// Sends the given Message object. Returns the ID of the sent message as a result
     pub async fn send_with_files(
         &self,
         message: &Message,
@@ -85,7 +85,7 @@ impl DiscordWebhook {
             .send()
             .await;
 
-        let response = send_result.map_err(|e| DiscordWebhookError::ReqwestError(e))?;
+        let response = send_result.map_err(|e| ReqwestError(e))?;
 
         match response.status().is_success() {
             true => {
@@ -107,9 +107,41 @@ impl DiscordWebhook {
         }
     }
 
+    /// Returns a previously sent webhook message from the same token.
+    pub async fn get(
+        &self,
+        message_id: &MessageID) -> Result<Message, DiscordWebhookError> {
+        let url = Url::parse(&format!("{}/", self.url.as_str())).unwrap();
+
+        let send_result = self
+            .client
+            .get(
+                url.join(format!("messages/{}?wait=true", message_id.0).as_str())
+                    .unwrap()
+                    .clone(),
+            )
+            .send()
+            .await;
+
+        let response = send_result.map_err(|e| ReqwestError(e))?;
+
+        match response.status().is_success() {
+            true => {
+                Ok(response
+                    .json::<Message>()
+                    .await
+                    .map_err(|e| ReqwestError(e))?)
+            }
+            false => Err(DiscordWebhookError::FormatError(
+                response.text().await.unwrap().to_string(),
+            )),
+        }
+    }
+
+    /// Edits a previously sent webhook message from the same token.
     pub async fn edit(
         &self,
-        message_id: MessageID,
+        message_id: &MessageID,
         message: &Message,
     ) -> Result<MessageID, DiscordWebhookError> {
         let url = Url::parse(&format!("{}/", self.url.as_str())).unwrap();
@@ -125,7 +157,7 @@ impl DiscordWebhook {
             .send()
             .await;
 
-        let response = send_result.map_err(|e| DiscordWebhookError::ReqwestError(e))?;
+        let response = send_result.map_err(|e| ReqwestError(e))?;
 
         match response.status().is_success() {
             true => {
@@ -147,20 +179,21 @@ impl DiscordWebhook {
         }
     }
 
-    pub async fn delete(&self, message_id: MessageID) -> Result<(), DiscordWebhookError> {
-        let url = Url::parse(&format!("{}/", self.url.as_str())).unwrap();
+    /// Deletes a message created by the webhook.
+    pub async fn delete(&self, message_id: &MessageID) -> Result<(), DiscordWebhookError> {
+        let url = Url::parse(&format!("{}/", &self.url)).unwrap();
 
         let send_result = self
             .client
             .delete(
-                url.join(format!("messages/{}", message_id.0).as_str())
+                url.join(&format!("messages/{}", message_id.0))
                     .unwrap()
                     .clone(),
             )
             .send()
             .await;
 
-        send_result.map_err(|e| DiscordWebhookError::ReqwestError(e))?;
+        send_result.map_err(|e| ReqwestError(e))?;
 
         Ok(())
     }
