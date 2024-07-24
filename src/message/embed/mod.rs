@@ -136,13 +136,16 @@ impl Embed {
         self
     }
 
-    pub fn fields<Func>(mut self, function: Func) -> Self
+    pub fn field<Func>(mut self, function: Func) -> Self
     where
-        Func: Fn(Vec<EmbedField>) -> Vec<EmbedField>,
+        Func: Fn(EmbedField) -> EmbedField,
     {
-        let fields = function(Vec::new());
+        let field = function(EmbedField::new());
 
-        self.fields = Some(fields);
+        match self.fields {
+            None => { self.fields = Some(vec![field]) }
+            Some(ref mut v) => { v.push(field) }
+        }
         self
     }
 }
