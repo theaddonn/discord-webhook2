@@ -76,6 +76,16 @@ impl Embed {
         self
     }
 
+    pub fn footer<Func>(mut self, function: Func) -> Self
+    where
+        Func: Fn(EmbedFooter) -> EmbedFooter,
+    {
+        let footer = function(EmbedFooter::new());
+
+        self.footer = Some(footer);
+        self
+    }
+
     pub fn image<Func>(mut self, function: Func) -> Self
     where
         Func: Fn(EmbedImage) -> EmbedImage,
@@ -83,6 +93,56 @@ impl Embed {
         let image = function(EmbedImage::new());
 
         self.image = Some(image);
+        self
+    }
+
+    pub fn thumbnail<Func>(mut self, function: Func) -> Self
+    where
+        Func: Fn(EmbedThumbnail) -> EmbedThumbnail,
+    {
+        let thumbnail = function(EmbedThumbnail::new());
+
+        self.thumbnail = Some(thumbnail);
+        self
+    }
+
+    pub fn video<Func>(mut self, function: Func) -> Self
+    where
+        Func: Fn(EmbedVideo) -> EmbedVideo,
+    {
+        let video = function(EmbedVideo::new());
+
+        self.video = Some(video);
+        self
+    }
+
+    pub fn provider<Func>(mut self, function: Func) -> Self
+    where
+        Func: Fn(EmbedProvider) -> EmbedProvider,
+    {
+        let provider = function(EmbedProvider::new());
+
+        self.provider = Some(provider);
+        self
+    }
+
+    pub fn author<Func>(mut self, function: Func) -> Self
+    where
+        Func: Fn(EmbedAuthor) -> EmbedAuthor,
+    {
+        let author = function(EmbedAuthor::new());
+
+        self.author = Some(author);
+        self
+    }
+
+    pub fn fields<Func>(mut self, function: Func) -> Self
+    where
+        Func: Fn(Vec<EmbedField>) -> Vec<EmbedField>,
+    {
+        let fields = function(Vec::new());
+
+        self.fields = Some(fields);
         self
     }
 }
