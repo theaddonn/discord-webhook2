@@ -4,17 +4,18 @@ _A simple rust library to interact with discord webhooks._
 
 Why use this one over the others?
 
-It is the only one to support:
+While there are multiple other libraries,
+most of them are either unmaintained or lack certain features...
 
-- uploading files/extra data
-- handling message ids
-- editing and deleting messages
-
-and more...
+Supports:
+- [X] Embeds
+- [X] Handling message ids
+- [X] Uploading files/extra data
+- [X] Sending, getting, editing and deleting messages
 
 ### Example
 
-Hello world:
+A basic "Hello World" using `discord-webhook2`:
 
 ```rust
 use discord_webhook2::{DiscordWebhook, Message};
@@ -29,9 +30,9 @@ async fn main() {
 }
 ```
 
-More can be found in the [examples' directory](https://github.com/Adrian8115/discord-webhook2/tree/main/examples).
+More examples can be found in the examples directory [discord-webhook2/examples](https://github.com/Adrian8115/discord-webhook2/tree/main/examples).
 
 ### Contributing
 
 Contributing is always appreciated.
-Feel free to create issues or open a pull request at any time.
+Feel free to create issues or open pull requests at any time.
