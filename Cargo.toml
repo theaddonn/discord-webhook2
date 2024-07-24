@@ -1,6 +1,6 @@
 [package]
 name = "discord-webhook2"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Adrian8115"]
 readme = "README.md"
