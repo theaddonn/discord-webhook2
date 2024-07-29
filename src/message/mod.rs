@@ -84,12 +84,12 @@ impl Message {
         self
     }
 
-    pub fn poll<Func1, Func2>(mut self, function1: Func1, function2: Func2) -> Self
+    pub fn poll<Func1, Func2>(mut self, title: Func1, content: Func2) -> Self
     where
         Func1: FnOnce(PollMedia) -> PollMedia,
         Func2: FnOnce(PollCreate) -> PollCreate,
     {
-        self.poll = Some(function2(PollCreate::new(function1(PollMedia::new()))));
+        self.poll = Some(content(PollCreate::new(title(PollMedia::new()))));
         self
     }
 }
