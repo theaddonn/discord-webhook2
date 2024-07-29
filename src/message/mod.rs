@@ -1,17 +1,18 @@
 use serde::{Deserialize, Serialize};
 
-use crate::embed::Embed;
-use crate::flags::MessageFlags;
-use crate::message::id::MessageID;
+use crate::message::embed::Embed;
+use crate::message::flags::MessageFlags;
+use crate::message::id::DiscordID;
 
 pub mod embed;
 pub mod flags;
 pub mod id;
 pub mod poll;
+pub mod emoji;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Message {
-    pub id: Option<MessageID>,
+    pub id: Option<DiscordID>,
     /// The message contents (up to 2000 characters)
     pub content: Option<String>,
     /// Override the default username of the webhook
