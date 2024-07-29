@@ -26,6 +26,12 @@ pub struct MessageFlags {
     is_voice_message: bool,
 }
 
+macro_rules! set_bit {
+    ($v:expr, $bit:expr) => {
+        $v |= 1 << $bit;
+    };
+}
+
 impl Serialize for MessageFlags {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
@@ -34,44 +40,44 @@ impl Serialize for MessageFlags {
         let mut bitfield = 0;
 
         if self.crossposted {
-            bitfield |= 1 << 0;
+            set_bit!(bitfield, 0);
         };
         if self.is_crosspost {
-            bitfield |= 1 << 1;
+            set_bit!(bitfield, 1);
         };
         if self.suppress_embeds {
-            bitfield |= 1 << 2;
+            set_bit!(bitfield, 2);
         };
         if self.source_message_deleted {
-            bitfield |= 1 << 3;
+            set_bit!(bitfield, 3);
         };
         if self.urgent {
-            bitfield |= 1 << 4;
+            set_bit!(bitfield, 4);
         };
         if self.has_thread {
-            bitfield |= 1 << 5;
+            set_bit!(bitfield, 5);
         };
         if self.ephemeral {
-            bitfield |= 1 << 6;
+            set_bit!(bitfield, 6);
         };
         if self.loading {
-            bitfield |= 1 << 7;
+            set_bit!(bitfield, 7);
         };
         if self.failed_to_mention_some_roles_in_thread {
-            bitfield |= 1 << 8;
+            set_bit!(bitfield, 8);
         };
         if self.suppress_notifications {
-            bitfield |= 1 << 12;
+            set_bit!(bitfield, 12);
         };
         if self.is_voice_message {
-            bitfield |= 1 << 13;
+            set_bit!(bitfield, 13);
         };
 
         serializer.serialize_u16(bitfield)
     }
 }
 
-macro_rules! bit_field {
+macro_rules! get_bit {
     ($v:expr, $bit:expr) => {
         ($v >> $bit) & 1 != 0
     };
@@ -82,21 +88,20 @@ impl<'de> Deserialize<'de> for MessageFlags {
     where
         D: Deserializer<'de>,
     {
-        match u16::deserialize(deserializer) {
-            Ok(v) => Ok(Self {
-                crossposted: bit_field!(v, 0),
-                is_crosspost: bit_field!(v, 1),
-                suppress_embeds: bit_field!(v, 2),
-                source_message_deleted: bit_field!(v, 3),
-                urgent: bit_field!(v, 4),
-                has_thread: bit_field!(v, 5),
-                ephemeral: bit_field!(v, 6),
-                loading: bit_field!(v, 7),
-                failed_to_mention_some_roles_in_thread: bit_field!(v, 8),
-                suppress_notifications: bit_field!(v, 12),
-                is_voice_message: bit_field!(v, 13),
-            }),
-            Err(e) => Err(e),
-        }
+        let bitfield = u16::deserialize(deserializer)?;
+
+        Ok(Self {
+            crossposted: get_bit!(bitfield, 0),
+            is_crosspost: get_bit!(bitfield, 1),
+            suppress_embeds: get_bit!(bitfield, 2),
+            source_message_deleted: get_bit!(bitfield, 3),
+            urgent: get_bit!(bitfield, 4),
+            has_thread: get_bit!(bitfield, 5),
+            ephemeral: get_bit!(bitfield, 6),
+            loading: get_bit!(bitfield, 7),
+            failed_to_mention_some_roles_in_thread: get_bit!(bitfield, 8),
+            suppress_notifications: get_bit!(bitfield, 12),
+            is_voice_message: get_bit!(bitfield, 13),
+        })
     }
 }
