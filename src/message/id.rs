@@ -5,9 +5,9 @@ use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use serde::de::Error;
 
 #[derive(Debug, Clone, Ord, PartialOrd, Eq, PartialEq)]
-pub struct MessageID(pub u64);
+pub struct DiscordID(pub u64);
 
-impl Serialize for MessageID {
+impl Serialize for DiscordID {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: Serializer,
@@ -16,7 +16,7 @@ impl Serialize for MessageID {
     }
 }
 
-impl<'de> Deserialize<'de> for MessageID {
+impl<'de> Deserialize<'de> for DiscordID {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
