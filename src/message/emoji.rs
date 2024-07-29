@@ -7,19 +7,39 @@ use crate::user::User;
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Emoji {
     /// Emoji id
-    id: Option<DiscordID>,
+    pub id: Option<DiscordID>,
     /// Emoji name
-    name: Option<String>,
+    pub name: Option<String>,
     /// Roles allowed to use this emoji
-    roles: Option<Vec<Role>>,
+    pub roles: Option<Vec<Role>>,
     /// User that created this emoji
-    user: Option<User>,
+    pub user: Option<User>,
     /// Whether this emoji must be wrapped in colons
-    require_colons: Option<bool>,
+    pub require_colons: Option<bool>,
     /// Whether this emoji is managed
-    managed: Option<bool>,
+    pub managed: Option<bool>,
     /// Whether this emoji is animated
-    animated: Option<bool>,
+    pub animated: Option<bool>,
     /// Whether this emoji can be used. Maybe false due to loss of Server Boosts
-    available: Option<bool>,
+    pub available: Option<bool>,
+}
+
+impl Emoji {
+    pub fn new() -> Self {
+        Self {
+            id: None,
+            name: None,
+            roles: None,
+            user: None,
+            require_colons: None,
+            managed: None,
+            animated: None,
+            available: None,
+        }
+    }
+
+    pub fn name(mut self, name: impl Into<String>) -> Self {
+        self.name = Some(name.into());
+        self
+    }
 }

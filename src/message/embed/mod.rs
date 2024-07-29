@@ -78,7 +78,7 @@ impl Embed {
 
     pub fn footer<Func>(mut self, function: Func) -> Self
     where
-        Func: Fn(EmbedFooter) -> EmbedFooter,
+        Func: FnOnce(EmbedFooter) -> EmbedFooter,
     {
         let footer = function(EmbedFooter::new());
 
@@ -88,7 +88,7 @@ impl Embed {
 
     pub fn image<Func>(mut self, function: Func) -> Self
     where
-        Func: Fn(EmbedImage) -> EmbedImage,
+        Func: FnOnce(EmbedImage) -> EmbedImage,
     {
         let image = function(EmbedImage::new());
 
@@ -98,7 +98,7 @@ impl Embed {
 
     pub fn thumbnail<Func>(mut self, function: Func) -> Self
     where
-        Func: Fn(EmbedThumbnail) -> EmbedThumbnail,
+        Func: FnOnce(EmbedThumbnail) -> EmbedThumbnail,
     {
         let thumbnail = function(EmbedThumbnail::new());
 
@@ -108,7 +108,7 @@ impl Embed {
 
     pub fn video<Func>(mut self, function: Func) -> Self
     where
-        Func: Fn(EmbedVideo) -> EmbedVideo,
+        Func: FnOnce(EmbedVideo) -> EmbedVideo,
     {
         let video = function(EmbedVideo::new());
 
@@ -118,7 +118,7 @@ impl Embed {
 
     pub fn provider<Func>(mut self, function: Func) -> Self
     where
-        Func: Fn(EmbedProvider) -> EmbedProvider,
+        Func: FnOnce(EmbedProvider) -> EmbedProvider,
     {
         let provider = function(EmbedProvider::new());
 
@@ -128,7 +128,7 @@ impl Embed {
 
     pub fn author<Func>(mut self, function: Func) -> Self
     where
-        Func: Fn(EmbedAuthor) -> EmbedAuthor,
+        Func: FnOnce(EmbedAuthor) -> EmbedAuthor,
     {
         let author = function(EmbedAuthor::new());
 
@@ -138,7 +138,7 @@ impl Embed {
 
     pub fn field<Func>(mut self, function: Func) -> Self
     where
-        Func: Fn(EmbedField) -> EmbedField,
+        Func: FnOnce(EmbedField) -> EmbedField,
     {
         let field = function(EmbedField::new());
 

@@ -3,6 +3,8 @@ use serde::{Deserialize, Serialize};
 use crate::id::DiscordID;
 use crate::message::embed::Embed;
 use crate::message::flags::MessageFlags;
+use crate::message::poll::create::PollCreate;
+use crate::message::poll::media::PollMedia;
 
 pub mod embed;
 pub mod emoji;
@@ -24,16 +26,18 @@ pub struct Message {
     /// Vector of up to 10 Embed objects
     pub embeds: Option<Vec<Embed>>,
 
+    /// Well, a pool
+    pub poll: Option<PollCreate>,
+
     /// Message flags combined as a bitfield
-    /// (only `suppress_embeds` and `suppress_notifications` can
-    /// be set can be set by webhooks)
+    /// (only `suppress_embeds` and `suppress_notifications` can be set can be set by webhooks)
     pub flags: Option<MessageFlags>,
 }
 
 impl Message {
     pub fn new<Func>(function: Func) -> Self
     where
-        Func: Fn(Message) -> Message,
+        Func: FnOnce(Message) -> Message,
     {
         function(Self {
             id: None,
@@ -42,6 +46,7 @@ impl Message {
             avatar_url: None,
             tts: None,
             embeds: None,
+            poll: None,
             flags: None,
         })
     }
@@ -68,7 +73,7 @@ impl Message {
 
     pub fn embed<Func>(mut self, function: Func) -> Self
     where
-        Func: Fn(Embed) -> Embed,
+        Func: FnOnce(Embed) -> Embed,
     {
         let embed = function(Embed::new());
 
@@ -76,6 +81,15 @@ impl Message {
             None => self.embeds = Some(vec![embed]),
             Some(ref mut vec) => vec.push(embed),
         };
+        self
+    }
+
+    pub fn poll<Func1, Func2>(mut self, function1: Func1, function2: Func2) -> Self
+    where
+        Func1: FnOnce(PollMedia) -> PollMedia,
+        Func2: FnOnce(PollCreate) -> PollCreate,
+    {
+        self.poll = Some(function2(PollCreate::new(function1(PollMedia::new()))));
         self
     }
 }
