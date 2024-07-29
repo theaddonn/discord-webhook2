@@ -1,6 +1,8 @@
+use std::num::ParseIntError;
 use std::str::FromStr;
 
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
+use serde::de::Error;
 
 #[derive(Debug, Clone, Ord, PartialOrd, Eq, PartialEq)]
 pub struct MessageID(pub u64);
@@ -21,6 +23,9 @@ impl<'de> Deserialize<'de> for MessageID {
     {
         let str = String::deserialize(deserializer)?;
 
-        Ok(Self(u64::from_str(&str).unwrap_or(0)))
+        match u64::from_str(&str) {
+            Ok(v) => { Ok(Self(v)) }
+            Err(e) => { Err(Error::custom("could not deserialize {str:?} into a MessageID")) }
+        }
     }
 }
