@@ -11,10 +11,15 @@ keywords = ["discord", "discord-api", "webhook", "discord-webhook", "network"]
 categories = ["network-programming", "api-bindings"]
 
 [dependencies]
-reqwest = { version = "0.12", features = ["json", "multipart"] }
 thiserror = "1.0"
+
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_repr = "0.1"
+
+reqwest = { version = "0.12", features = ["json", "multipart"] }
 url = "2.5"
-serde_json = "1"
+
 tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros"] }
-serde = { version = "1", features = ["derive"] }
+
 iso8061-timestamp = "0.1"
