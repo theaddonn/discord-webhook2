@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+
 use crate::id::DiscordID;
 use crate::roles::Role;
 use crate::user::User;
@@ -20,5 +21,5 @@ pub struct Emoji {
     /// Whether this emoji is animated
     animated: Option<bool>,
     /// Whether this emoji can be used. Maybe false due to loss of Server Boosts
-    available: Option<bool>
+    available: Option<bool>,
 }

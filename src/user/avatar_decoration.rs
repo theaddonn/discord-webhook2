@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+
 use crate::id::DiscordID;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]

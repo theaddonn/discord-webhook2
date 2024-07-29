@@ -1,12 +1,13 @@
-mod flags;
-mod premium_type;
-mod avatar_decoration;
-
 use serde::{Deserialize, Serialize};
+
 use crate::id::DiscordID;
 use crate::user::avatar_decoration::AvatarDecoration;
 use crate::user::flags::UserFlags;
 use crate::user::premium_type::PremiumType;
+
+mod avatar_decoration;
+mod flags;
+mod premium_type;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct User {
@@ -43,5 +44,5 @@ pub struct User {
     /// The public flags on a user's account
     public_flags: Option<UserFlags>,
     /// Data for the user's avatar decoration
-    avatar_decoration_data: Option<AvatarDecoration>
+    avatar_decoration_data: Option<AvatarDecoration>,
 }

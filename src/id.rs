@@ -1,7 +1,7 @@
 use std::str::FromStr;
 
-use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use serde::de::Error;
+use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
 #[derive(Debug, Clone, Ord, PartialOrd, Eq, PartialEq)]
 pub struct DiscordID(pub u64);
@@ -23,8 +23,10 @@ impl<'de> Deserialize<'de> for DiscordID {
         let str = String::deserialize(deserializer)?;
 
         match u64::from_str(&str) {
-            Ok(v) => { Ok(Self(v)) }
-            Err(e) => { Err(Error::custom(format!("could not deserialize {str:?} into a MessageID: {e:?}"))) }
+            Ok(v) => Ok(Self(v)),
+            Err(e) => Err(Error::custom(format!(
+                "could not deserialize {str:?} into a MessageID: {e:?}"
+            ))),
         }
     }
 }

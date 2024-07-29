@@ -46,7 +46,7 @@ impl Serialize for UserFlags {
         S: Serializer,
     {
         let mut bitfield = 0;
-        
+
         if self.staff {
             set_bit!(bitfield, 0)
         }
@@ -92,7 +92,7 @@ impl Serialize for UserFlags {
         if self.active_developer {
             set_bit!(bitfield, 22)
         }
-        
+
         serializer.serialize_u32(bitfield)
     }
 }

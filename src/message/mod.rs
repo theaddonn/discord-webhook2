@@ -1,13 +1,13 @@
 use serde::{Deserialize, Serialize};
 
+use crate::id::DiscordID;
 use crate::message::embed::Embed;
 use crate::message::flags::MessageFlags;
-use crate::id::DiscordID;
 
 pub mod embed;
+pub mod emoji;
 pub mod flags;
 pub mod poll;
-pub mod emoji;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Message {

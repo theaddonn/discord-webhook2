@@ -3,7 +3,7 @@ use serde::{Deserialize, Deserializer, Serialize, Serializer};
 #[derive(Debug, Clone)]
 pub struct RoleFlags {
     /// Members can select role in an onboarding prompt
-    in_prompt: bool
+    in_prompt: bool,
 }
 
 macro_rules! set_bit {
@@ -36,12 +36,12 @@ macro_rules! get_bit {
 impl<'de> Deserialize<'de> for RoleFlags {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
-        D: Deserializer<'de>
+        D: Deserializer<'de>,
     {
         let bitfield = u8::deserialize(deserializer)?;
 
         Ok(Self {
-            in_prompt: get_bit!(bitfield, 0)
+            in_prompt: get_bit!(bitfield, 0),
         })
     }
 }

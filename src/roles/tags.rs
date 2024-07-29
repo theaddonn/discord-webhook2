@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+
 use crate::id::DiscordID;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -13,6 +14,6 @@ pub struct RoleTags {
     subscription_listing_id: Option<DiscordID>,
     /// Whether this role is available for purchase
     available_for_purchase: Option<()>,
-    ///	Whether this role is a guild's linked role
-    guild_connections: Option<()>
+    ///    Whether this role is a guild's linked role
+    guild_connections: Option<()>,
 }

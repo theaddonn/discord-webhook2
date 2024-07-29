@@ -1,10 +1,11 @@
-mod tags;
-mod flags;
-
 use serde::{Deserialize, Serialize};
+
 use crate::id::DiscordID;
 use crate::roles::flags::RoleFlags;
 use crate::roles::tags::RoleTags;
+
+mod flags;
+mod tags;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Role {
