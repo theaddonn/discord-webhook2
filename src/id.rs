@@ -1,4 +1,3 @@
-use std::num::ParseIntError;
 use std::str::FromStr;
 
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
@@ -25,7 +24,7 @@ impl<'de> Deserialize<'de> for DiscordID {
 
         match u64::from_str(&str) {
             Ok(v) => { Ok(Self(v)) }
-            Err(e) => { Err(Error::custom("could not deserialize {str:?} into a MessageID")) }
+            Err(e) => { Err(Error::custom(format!("could not deserialize {str:?} into a MessageID: {e:?}"))) }
         }
     }
 }

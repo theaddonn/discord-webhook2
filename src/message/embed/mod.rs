@@ -1,13 +1,12 @@
 use iso8061_timestamp::Timestamp;
 use serde::{Deserialize, Serialize};
-
-use crate::embed::author::EmbedAuthor;
-use crate::embed::field::EmbedField;
-use crate::embed::footer::EmbedFooter;
-use crate::embed::image::EmbedImage;
-use crate::embed::provider::EmbedProvider;
-use crate::embed::thumbnail::EmbedThumbnail;
-use crate::embed::video::EmbedVideo;
+use crate::message::embed::author::EmbedAuthor;
+use crate::message::embed::field::EmbedField;
+use crate::message::embed::footer::EmbedFooter;
+use crate::message::embed::image::EmbedImage;
+use crate::message::embed::provider::EmbedProvider;
+use crate::message::embed::thumbnail::EmbedThumbnail;
+use crate::message::embed::video::EmbedVideo;
 
 pub mod author;
 pub mod field;

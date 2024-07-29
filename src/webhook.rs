@@ -4,9 +4,9 @@ use reqwest::multipart::{Form, Part};
 use reqwest::{Client, Url};
 
 use crate::error::DiscordWebhookError;
+use crate::error::DiscordWebhookError::ReqwestError;
 use crate::id::DiscordID;
 use crate::message::Message;
-use crate::DiscordWebhookError::ReqwestError;
 
 pub struct DiscordWebhook {
     client: Client,
@@ -31,7 +31,7 @@ impl DiscordWebhook {
         }
     }
 
-    /// Send the given Message object. Returns the ID of the send message as a result
+    /// Send the given Message object. Returns the ID of the sent message as a result
     pub async fn send(&self, message: &Message) -> Result<DiscordID, DiscordWebhookError> {
         let send_result = self
             .client

@@ -2,11 +2,10 @@ use serde::{Deserialize, Serialize};
 
 use crate::message::embed::Embed;
 use crate::message::flags::MessageFlags;
-use crate::message::id::DiscordID;
+use crate::id::DiscordID;
 
 pub mod embed;
 pub mod flags;
-pub mod id;
 pub mod poll;
 pub mod emoji;
 

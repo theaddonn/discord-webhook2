@@ -36,7 +36,7 @@ pub struct UserFlags {
 
 macro_rules! set_bit {
     ($v:expr, $bit:expr) => {
-        $v |= 1 << $bit;
+        $v |= 1 << $bit
     };
 }
 

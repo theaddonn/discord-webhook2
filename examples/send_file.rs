@@ -1,6 +1,6 @@
 use std::collections::BTreeMap;
-
-use discord_webhook2::{DiscordWebhook, Message};
+use discord_webhook2::message::Message;
+use discord_webhook2::webhook::DiscordWebhook;
 
 #[tokio::main]
 async fn main() {
