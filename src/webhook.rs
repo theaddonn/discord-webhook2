@@ -15,7 +15,7 @@ pub struct DiscordWebhook {
 impl DiscordWebhook {
     pub fn new(url: impl Into<String>) -> Result<Self, DiscordWebhookError> {
         let url = url.into();
-        let url = Url::parse(url.as_str()).map_err(|e| DiscordWebhookError::UrlParseError(e))?;
+        let url = Url::parse(url.as_str()).map_err(DiscordWebhookError::UrlParseError)?;
 
         Ok(Self {
             client: Client::new(),
