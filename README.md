@@ -17,6 +17,8 @@ Supports:
 - [X] Handling message ids
 - [X] Uploading files/extra data
 - [X] Sending, getting, editing and deleting messages
+- [X] Polls
+- [X] Emojis
 
 ### Example
 
