@@ -2,6 +2,10 @@ on: [push, pull_request]
 
 name: Continuous integration
 
+env: 
+  "DISCORD_WEBHOOK_URL": ""
+
+
 jobs:
   check:
     name: Check
