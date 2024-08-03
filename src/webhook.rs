@@ -39,14 +39,14 @@ impl DiscordWebhook {
             .send()
             .await;
 
-        let response = send_result.map_err(|e| DiscordWebhookError::ReqwestError(e))?;
+        let response = send_result.map_err(DiscordWebhookError::ReqwestError)?;
 
         match response.status().is_success() {
             true => {
                 let posted_message: Message = response
                     .json::<Message>()
                     .await
-                    .map_err(|e| DiscordWebhookError::ReqwestError(e))?;
+                    .map_err(DiscordWebhookError::ReqwestError)?;
 
                 match posted_message.id {
                     None => Err(DiscordWebhookError::FormatError(String::from(
@@ -84,14 +84,14 @@ impl DiscordWebhook {
             .send()
             .await;
 
-        let response = send_result.map_err(|e| DiscordWebhookError::ReqwestError(e))?;
+        let response = send_result.map_err(DiscordWebhookError::ReqwestError)?;
 
         match response.status().is_success() {
             true => {
                 let posted_message: Message = response
                     .json::<Message>()
                     .await
-                    .map_err(|e| DiscordWebhookError::ReqwestError(e))?;
+                    .map_err(DiscordWebhookError::ReqwestError)?;
 
                 match posted_message.id {
                     None => Err(DiscordWebhookError::FormatError(String::from(
@@ -120,13 +120,13 @@ impl DiscordWebhook {
             .send()
             .await;
 
-        let response = send_result.map_err(|e| DiscordWebhookError::ReqwestError(e))?;
+        let response = send_result.map_err(DiscordWebhookError::ReqwestError)?;
 
         match response.status().is_success() {
             true => Ok(response
                 .json::<Message>()
                 .await
-                .map_err(|e| DiscordWebhookError::ReqwestError(e))?),
+                .map_err(DiscordWebhookError::ReqwestError)?),
             false => Err(DiscordWebhookError::FormatError(
                 response.text().await.unwrap().to_string(),
             )),
@@ -152,14 +152,14 @@ impl DiscordWebhook {
             .send()
             .await;
 
-        let response = send_result.map_err(|e| DiscordWebhookError::ReqwestError(e))?;
+        let response = send_result.map_err(DiscordWebhookError::ReqwestError)?;
 
         match response.status().is_success() {
             true => {
                 let posted_message: Message = response
                     .json::<Message>()
                     .await
-                    .map_err(|e| DiscordWebhookError::ReqwestError(e))?;
+                    .map_err(DiscordWebhookError::ReqwestError)?;
 
                 match posted_message.id {
                     None => Err(DiscordWebhookError::FormatError(String::from(
@@ -188,7 +188,7 @@ impl DiscordWebhook {
             .send()
             .await;
 
-        send_result.map_err(|e| DiscordWebhookError::ReqwestError(e))?;
+        send_result.map_err(DiscordWebhookError::ReqwestError)?;
 
         Ok(())
     }
