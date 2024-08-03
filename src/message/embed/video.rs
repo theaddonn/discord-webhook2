@@ -39,3 +39,9 @@ impl EmbedVideo {
         self
     }
 }
+
+impl Default for EmbedVideo {
+    fn default() -> Self {
+        Self::new()
+    }
+}

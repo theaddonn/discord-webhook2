@@ -39,3 +39,9 @@ impl EmbedThumbnail {
         self
     }
 }
+
+impl Default for EmbedThumbnail {
+    fn default() -> Self {
+        Self::new()
+    }
+}

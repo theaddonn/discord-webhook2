@@ -43,3 +43,9 @@ impl Emoji {
         self
     }
 }
+
+impl Default for Emoji {
+    fn default() -> Self {
+        Self::new()
+    }
+}

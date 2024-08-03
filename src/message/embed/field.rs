@@ -31,3 +31,9 @@ impl EmbedField {
         self
     }
 }
+
+impl Default for EmbedField {
+    fn default() -> Self {
+        Self::new()
+    }
+}

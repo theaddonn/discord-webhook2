@@ -24,3 +24,9 @@ impl EmbedProvider {
         self
     }
 }
+
+impl Default for EmbedProvider {
+    fn default() -> Self {
+        Self::new()
+    }
+}

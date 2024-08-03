@@ -149,3 +149,9 @@ impl Embed {
         self
     }
 }
+
+impl Default for Embed {
+    fn default() -> Self {
+        Self::new()
+    }
+}

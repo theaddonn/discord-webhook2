@@ -1,5 +1,4 @@
 use serde::{Deserialize, Serialize};
-
 use crate::message::emoji::Emoji;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -29,5 +28,11 @@ impl PollMedia {
     {
         self.emoji = Some(function(Emoji::new()));
         self
+    }
+}
+
+impl Default for PollMedia {
+    fn default() -> Self {
+        Self::new()
     }
 }

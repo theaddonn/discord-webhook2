@@ -33,3 +33,9 @@ impl EmbedFooter {
         self
     }
 }
+
+impl Default for EmbedFooter {
+    fn default() -> Self {
+        Self::new()
+    }
+}

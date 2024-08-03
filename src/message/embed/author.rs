@@ -40,3 +40,9 @@ impl EmbedAuthor {
         self
     }
 }
+
+impl Default for EmbedAuthor {
+    fn default() -> Self {
+        Self::new()
+    }
+}

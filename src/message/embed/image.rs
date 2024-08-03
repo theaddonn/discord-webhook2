@@ -39,3 +39,9 @@ impl EmbedImage {
         self
     }
 }
+
+impl Default for EmbedImage {
+    fn default() -> Self {
+        Self::new()
+    }
+}
