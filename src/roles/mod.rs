@@ -4,8 +4,8 @@ use crate::id::DiscordID;
 use crate::roles::flags::RoleFlags;
 use crate::roles::tags::RoleTags;
 
-mod flags;
-mod tags;
+pub mod flags;
+pub mod tags;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Role {
