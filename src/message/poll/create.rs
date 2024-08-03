@@ -1,7 +1,7 @@
-use serde::{Deserialize, Serialize};
 use crate::message::poll::answer::PollAnswer;
 use crate::message::poll::layout_type::PollLayoutType;
 use crate::message::poll::media::PollMedia;
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct PollCreate {
