@@ -2,7 +2,7 @@
 
 [![Crates.io Version](https://img.shields.io/crates/v/discord-webhook2)](https://crates.io/crates/discord-webhook2)
 [![Crates.io Total Downloads](https://img.shields.io/crates/d/discord-webhook2)](https://crates.io/crates/discord-webhook2)
-[![Crates.io License](https://img.shields.io/crates/l/discord-webhook2)](https://github.com/Adrian8115/discord-webhook2/blob/main/LICENSE)
+[![Crates.io License](https://img.shields.io/crates/l/discord-webhook2)](https://github.com/theaddonn/discord-webhook2/blob/main/LICENSE)
 
 A Rust library to interact with advanced discord webhooks.
 
@@ -38,7 +38,7 @@ async fn main() {
 ```
 
 More examples can be found in the examples
-directory [discord-webhook2/examples](https://github.com/Adrian8115/discord-webhook2/tree/main/examples).
+directory [discord-webhook2/examples](https://github.com/theaddonn/discord-webhook2/tree/main/examples).
 
 ### Contributing
 
