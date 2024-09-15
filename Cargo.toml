@@ -11,8 +11,9 @@ keywords = ["discord", "discord-api", "webhook", "discord-webhook", "network"]
 categories = ["network-programming", "api-bindings"]
 
 [features]
-default = []
-rustls-tls = ["reqwest/rustls-tls"]
+# features = ["json", "multipart"]
+default = ["reqwest/json", "reqwest/multipart"]
+rustls-tls = ["reqwest/json", "reqwest/multipart", "reqwest/rustls-tls"]
 
 [dependencies]
 thiserror = "1.0"
@@ -21,7 +22,7 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 serde_repr = "0.1"
 
-reqwest = { version = "0.12", features = ["json", "multipart"] }
+reqwest = { version = "0.12", default-features = false}
 url = "2.5"
 
 tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros"] }

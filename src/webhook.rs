@@ -12,19 +12,25 @@ pub struct DiscordWebhook {
     url: Url,
 }
 
+#[cfg(not(feature="rustls-tls"))]
+fn build_client() -> Result<Client, DiscordWebhookError> {
+    Ok(reqwest::Client::new())
+}
+
+#[cfg(feature="rustls-tls")]
+fn build_client() -> Result<Client, DiscordWebhookError> {
+    reqwest::ClientBuilder::new()
+        .use_rustls_tls()
+        .build()
+        .map_err(DiscordWebhookError::ReqwestError)
+}
+
 impl DiscordWebhook {
     pub fn new(url: impl Into<String>) -> Result<Self, DiscordWebhookError> {
         let url = url.into();
         let url = Url::parse(url.as_str()).map_err(DiscordWebhookError::UrlParseError)?;
 
-        let client = if cfg!(feature = "rustls-tls") {
-            reqwest::ClientBuilder::new()
-                .use_rustls_tls()
-                .build()
-                .map_err(DiscordWebhookError::ReqwestError)?
-        } else {
-            reqwest::Client::new()
-        };
+        let client = build_client()?;
 
         Ok(Self {client, url })
     }
