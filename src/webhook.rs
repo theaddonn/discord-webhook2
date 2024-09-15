@@ -17,10 +17,16 @@ impl DiscordWebhook {
         let url = url.into();
         let url = Url::parse(url.as_str()).map_err(DiscordWebhookError::UrlParseError)?;
 
-        Ok(Self {
-            client: Client::new(),
-            url,
-        })
+        let client = if cfg!(feature = "rustls-tls") {
+            reqwest::ClientBuilder::new()
+                .use_rustls_tls()
+                .build()
+                .map_err(DiscordWebhookError::ReqwestError)?
+        } else {
+            reqwest::Client::new()
+        };
+
+        Ok(Self {client, url })
     }
 
     pub fn from_url(url: Url) -> Self {

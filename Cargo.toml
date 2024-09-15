@@ -10,6 +10,10 @@ license = "Apache-2.0"
 keywords = ["discord", "discord-api", "webhook", "discord-webhook", "network"]
 categories = ["network-programming", "api-bindings"]
 
+[features]
+default = []
+rustls-tls = ["reqwest/rustls-tls"]
+
 [dependencies]
 thiserror = "1.0"
 
