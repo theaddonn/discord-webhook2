@@ -4,14 +4,13 @@ version = "0.3.1"
 edition = "2021"
 authors = ["theaddonn <theaddonn@gmail.com>"]
 readme = "README.md"
-description = "Discord webhook api library"
-repository = "https://github.com/Adrian8115/discord-webhook2"
+description = "Discord webhook library"
+repository = "https://github.com/theaddonn/discord-webhook2"
 license = "Apache-2.0"
 keywords = ["discord", "discord-api", "webhook", "discord-webhook", "network"]
 categories = ["network-programming", "api-bindings"]
 
 [features]
-# features = ["json", "multipart"]
 default = ["reqwest/json", "reqwest/multipart"]
 rustls-tls = ["reqwest/json", "reqwest/multipart", "reqwest/rustls-tls"]
 
