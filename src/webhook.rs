@@ -12,12 +12,12 @@ pub struct DiscordWebhook {
     url: Url,
 }
 
-#[cfg(not(feature="rustls-tls"))]
+#[cfg(not(feature = "rustls-tls"))]
 fn build_client() -> Result<Client, DiscordWebhookError> {
     Ok(reqwest::Client::new())
 }
 
-#[cfg(feature="rustls-tls")]
+#[cfg(feature = "rustls-tls")]
 fn build_client() -> Result<Client, DiscordWebhookError> {
     reqwest::ClientBuilder::new()
         .use_rustls_tls()
@@ -32,7 +32,7 @@ impl DiscordWebhook {
 
         let client = build_client()?;
 
-        Ok(Self {client, url })
+        Ok(Self { client, url })
     }
 
     pub fn from_url(url: Url) -> Self {
@@ -190,10 +190,7 @@ impl DiscordWebhook {
 
         let send_result = self
             .client
-            .delete(
-                url.join(&format!("messages/{}", message_id.0))?
-                    .clone(),
-            )
+            .delete(url.join(&format!("messages/{}", message_id.0))?.clone())
             .send()
             .await;
 
