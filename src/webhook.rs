@@ -46,7 +46,7 @@ impl DiscordWebhook {
     pub async fn send(&self, message: &Message) -> Result<DiscordID, DiscordWebhookError> {
         let send_result = self
             .client
-            .post(self.url.join("?wait=true").unwrap().clone())
+            .post(self.url.join("?wait=true")?.clone())
             .json(message)
             .send()
             .await;
@@ -68,7 +68,7 @@ impl DiscordWebhook {
                 }
             }
             false => Err(DiscordWebhookError::FormatError(
-                response.text().await.unwrap().to_string(),
+                response.text().await?.to_string(),
             )),
         }
     }
@@ -91,7 +91,7 @@ impl DiscordWebhook {
 
         let send_result = self
             .client
-            .post(self.url.join("?wait=true").unwrap().clone())
+            .post(self.url.join("?wait=true")?.clone())
             .multipart(form)
             .send()
             .await;
@@ -113,20 +113,19 @@ impl DiscordWebhook {
                 }
             }
             false => Err(DiscordWebhookError::FormatError(
-                response.text().await.unwrap().to_string(),
+                response.text().await?.to_string(),
             )),
         }
     }
 
     /// Returns a previously sent webhook message from the same token.
     pub async fn get(&self, message_id: &DiscordID) -> Result<Message, DiscordWebhookError> {
-        let url = Url::parse(&format!("{}/", self.url.as_str())).unwrap();
+        let url = Url::parse(&format!("{}/", self.url.as_str()))?;
 
         let send_result = self
             .client
             .get(
-                url.join(format!("messages/{}?wait=true", message_id.0).as_str())
-                    .unwrap()
+                url.join(format!("messages/{}?wait=true", message_id.0).as_str())?
                     .clone(),
             )
             .send()
@@ -140,7 +139,7 @@ impl DiscordWebhook {
                 .await
                 .map_err(DiscordWebhookError::ReqwestError)?),
             false => Err(DiscordWebhookError::FormatError(
-                response.text().await.unwrap().to_string(),
+                response.text().await?.to_string(),
             )),
         }
     }
@@ -151,13 +150,12 @@ impl DiscordWebhook {
         message_id: &DiscordID,
         message: &Message,
     ) -> Result<DiscordID, DiscordWebhookError> {
-        let url = Url::parse(&format!("{}/", self.url.as_str())).unwrap();
+        let url = Url::parse(&format!("{}/", self.url.as_str()))?;
 
         let send_result = self
             .client
             .patch(
-                url.join(format!("messages/{}?wait=true", message_id.0).as_str())
-                    .unwrap()
+                url.join(format!("messages/{}?wait=true", message_id.0).as_str())?
                     .clone(),
             )
             .json(message)
@@ -181,20 +179,19 @@ impl DiscordWebhook {
                 }
             }
             false => Err(DiscordWebhookError::FormatError(
-                response.text().await.unwrap().to_string(),
+                response.text().await?.to_string(),
             )),
         }
     }
 
     /// Deletes a message created by the webhook.
     pub async fn delete(&self, message_id: &DiscordID) -> Result<(), DiscordWebhookError> {
-        let url = Url::parse(&format!("{}/", &self.url)).unwrap();
+        let url = Url::parse(&format!("{}/", &self.url))?;
 
         let send_result = self
             .client
             .delete(
-                url.join(&format!("messages/{}", message_id.0))
-                    .unwrap()
+                url.join(&format!("messages/{}", message_id.0))?
                     .clone(),
             )
             .send()
