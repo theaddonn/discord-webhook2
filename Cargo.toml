@@ -27,3 +27,27 @@ url = "2.5"
 tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros"] }
 
 iso8061-timestamp = "0.1"
+
+[[example]]
+name = "hello_world"
+
+[[example]]
+name = "get_message"
+
+[[example]]
+name = "edit_message"
+
+[[example]]
+name = "delete_message"
+
+[[example]]
+name = "simple_embed"
+
+[[example]]
+name = "complex_embed"
+
+[[example]]
+name = "poll"
+
+[[example]]
+name = "send_file"
