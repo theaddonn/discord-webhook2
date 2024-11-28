@@ -15,7 +15,7 @@ default = []
 rustls-tls = ["reqwest/rustls-tls", "reqwest/json", "reqwest/multipart"]
 
 [dependencies]
-thiserror = "1.0"
+thiserror = "2.0"
 
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
