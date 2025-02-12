@@ -24,9 +24,10 @@ serde_repr = "0.1"
 reqwest = { version = "0.12", default-features = false, features = ["json", "multipart"] }
 url = "2.5"
 
-tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros"] }
-
 iso8061-timestamp = "0.1"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros"] }
 
 [[example]]
 name = "hello_world"
