@@ -11,8 +11,9 @@ keywords = ["discord", "discord-api", "webhook", "discord-webhook", "network"]
 categories = ["network-programming", "api-bindings"]
 
 [features]
-default = []
-rustls-tls = ["reqwest/rustls-tls", "reqwest/json", "reqwest/multipart"]
+default = ["default-tls"]
+default-tls = ["reqwest/default-tls"]
+rustls-tls = ["reqwest/rustls-tls"]
 
 [dependencies]
 thiserror = "2.0"
